@@ -20,21 +20,20 @@ public class Visualizer {
 	
 	private Forest<Vertex,Edge> forest = new DelegateForest<Vertex,Edge>(new DirectedOrderedSparseMultigraph<Vertex,Edge>());
     private Graph graph;
-	
+
+    // Constructor
     public Visualizer(Graph inGraph) {
         this.graph=inGraph;
-        treeBuilder();
-        viewGraph();
     }
-	
-	private void treeBuilder () {
+
+    // Methods
+	public void treeBuilder () {
 		if (graph instanceof BinaryTree)
 			((BinaryTree) graph).updateEdges();		
 				
 		for (Vertex v : graph.getVertices()) {
 			forest.addVertex(v);
 		}
-		
 		for (Edge e :graph.getEdges() ) {
 			forest.addEdge(e, e.getVertex1(), e.getVertex2());
 		}
@@ -44,7 +43,7 @@ public class Visualizer {
 		return this.forest;
 	}
     
-    private void viewGraph() {
+    public void viewGraph() {
     	Layout<Vertex, Edge> layout = new TreeLayout<Vertex,Edge>(getForest());
     	BasicVisualizationServer<Vertex,Edge> bvs = new BasicVisualizationServer<Vertex, Edge>(layout);
     	bvs.getRenderContext().setVertexLabelTransformer(new ToStringLabeller<Vertex>());

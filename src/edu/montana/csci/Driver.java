@@ -3,8 +3,10 @@ package edu.montana.csci;
 public class Driver {
 	
 		public static void main(String[] args) {
-            RedBlackTree myTree = createTree("The quick brown fox jumps over the lazy dog");
-			Visualizer tree = new Visualizer(myTree);
+            RedBlackTree myTree = createTree("1 2 3 4 5 7 8 9 10 12 13 14 15");
+			Visualizer viewTree = new Visualizer(myTree);
+            viewTree.treeBuilder();
+            viewTree.viewGraph();
 		}
 
         public  static RedBlackTree createTree(String str){
