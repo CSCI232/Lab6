@@ -10,20 +10,35 @@ public class RedBlackTree extends SelfBalancingTree {
     /** Insert an Object into the Red-Black tree.
      *  @param  item The object item to be inserted
      */
-    public void add(Object item) {
+    @Override
+    public void add(Comparable item) {
         if (root == null) {
             root = new RedBlackTreeVertex(item);
             ((RedBlackTreeVertex) root).isRed = false; // root is black.
         }
         else {
-            root = add((RedBlackTreeVertex) root, (Comparable) item);
+            root = add((RedBlackTreeVertex) root, item);
             ((RedBlackTreeVertex) root).isRed = false; // root is always black.
         }
+    }
+    /** Check for red children, swap colors if found.
+     *  @param localRoot
+     */
+    private void moveBlackDown(RedBlackTreeVertex localRoot) {
+        if ( localRoot.left != null && localRoot.right != null)
+            // See whether both the left child and the right child are red
+            if (  ((RedBlackTreeVertex) localRoot.left).isRed
+                    && ((RedBlackTreeVertex) localRoot.right).isRed) {
+                // Change the color of the children to black and change local root to red.
+                ((RedBlackTreeVertex) localRoot.left).isRed = false;
+                ((RedBlackTreeVertex) localRoot.right).isRed = false;
+                localRoot.isRed = true;
+            }
     }
     /** Recursive method to insert an Object into the tree.
      *  @param localRoot The local root
      *  @param  item The element to be inserted
-     *  @return RedBlackTree
+     *  @return RedBlackTreeVertex
      */
     private RedBlackTreeVertex add(RedBlackTreeVertex localRoot, Comparable item) {
         if(item.compareTo(localRoot.data) < 0) {
@@ -94,16 +109,5 @@ public class RedBlackTree extends SelfBalancingTree {
                 return localRoot;
             }
         }
-    }
-    private void moveBlackDown(RedBlackTreeVertex localRoot) {
-        if ( localRoot.left != null && localRoot.right != null)
-            // See whether both the left child and the right child are red
-            if (  ((RedBlackTreeVertex) localRoot.left).isRed
-                    && ((RedBlackTreeVertex) localRoot.right).isRed) {
-                // Change the color of the children to black and change local root to red.
-                ((RedBlackTreeVertex) localRoot.left).isRed = false;
-                ((RedBlackTreeVertex) localRoot.right).isRed = false;
-                localRoot.isRed = true;
-            }
     }
 }

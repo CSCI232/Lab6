@@ -5,8 +5,6 @@ package edu.montana.csci;
  */
 public class BinaryTreeVertex extends Vertex {
     // Data Fields
-//        /** The information stored in this node. */
-//        protected Object data;
     /** Reference to the left child. */
     protected BinaryTreeVertex left;
     /** Reference to the right child. */

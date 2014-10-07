@@ -63,24 +63,29 @@ public class BinaryTree extends Graph {
 		}
 	}
 
-//	public void treeInsert(Comparable item) {
-//		BinaryTreeVertex temp = new BinaryTreeVertex(null);
-//        BinaryTreeVertex vertex = new BinaryTreeVertex(item);
-//		BinaryTreeVertex localRoot = this.root;
-//		while (localRoot!=null) {
-//			temp = localRoot;
-//			if (item.compareTo(localRoot.data) < 0)
-//				localRoot = localRoot.left;
-//			else localRoot = localRoot.right;
-//		}
-//		vertex.parent = temp;
-//		if (temp==null)
-//			this.root = vertex;
-//		else if (item.compareTo(temp.data) < 0)
-//			temp.left = vertex;
-//		else temp.right = vertex;
-//		this.addVertex(vertex);
-//	}
+    /** Insert an Object into the Binary tree.
+     *  @param  item The object item to be inserted
+     */
+	public void add(Comparable item) {
+		BinaryTreeVertex temp = new BinaryTreeVertex(null);
+        BinaryTreeVertex vertex = new BinaryTreeVertex(item);
+		BinaryTreeVertex localRoot = this.root;
+		while (localRoot!=null) {
+			temp = localRoot;
+			if (item.compareTo(localRoot.data) < 0)
+				localRoot = localRoot.left;
+			else localRoot = localRoot.right;
+		}
+		vertex.parent = temp;
+		if (temp==null)
+			this.root = vertex;
+		else if (item.compareTo(temp.data) < 0)
+			temp.left = vertex;
+		else temp.right = vertex;
+		this.addVertex(vertex);
+	}
+
+
 //
 //	public void transplant(BinaryTreeVertex u, BinaryTreeVertex v) {
 //		if (u.parent == null)

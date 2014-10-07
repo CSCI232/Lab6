@@ -3,19 +3,29 @@ package edu.montana.csci;
 public class Driver {
 	
 		public static void main(String[] args) {
-            RedBlackTree myTree = createTree("1 2 3 4 5 7 8 9 10 12 13 14 15");
-			Visualizer viewTree = new Visualizer(myTree);
+
+            RedBlackTree myTree = new RedBlackTree();
+
+//            for (int i = 1; i<=11; i++)
+//                myTree.add(i);
+
+            myTree.add(10);
+            myTree.add(5);
+            myTree.add(8);
+            myTree.add(13);
+            myTree.add(2);
+            myTree.add(1);
+            myTree.add(9);
+            myTree.add(14);
+            myTree.add(15);
+            myTree.add(11);
+            myTree.add(3);
+
+
+            Visualizer viewTree = new Visualizer(myTree);
             viewTree.treeBuilder();
             viewTree.viewGraph();
 		}
-
-        public  static RedBlackTree createTree(String str){
-            String[] words = str.split(" ");
-            RedBlackTree RBTree = new RedBlackTree();
-            for (int i=0; i< words.length; i++)
-                RBTree.add(words[i]);
-            return RBTree;
-        }
 
 
 	}
